@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "purpose": [
+        "debug-test"
+      ],
+      "console": "integratedTerminal",
+      "env": {
+        "AWS_PROFILE": "cloud-course"
+      }
+    }
+  ]
+}
