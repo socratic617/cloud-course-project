@@ -1,10 +1,21 @@
 import boto3
-
+import os
+from moto import mock_aws
 from files_api.s3.write_objects import upload_s3_object
 
 TEST_BUCKET_NAME = "mlops-unit-test-bucket"
 
+def point_away_from_aws():
+    os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+    os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+    os.environ["AWS_SECURITY_TOKEN"] = "testing"
+    os.environ["AWS_SESSION_TOKEN"] = "testing"
+    os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
+
+@mock_aws
 def test__upload_s3_object():
+    point_away_from_aws()
+
     # create an s3 bucket
     s3_client = boto3.client("s3")
     s3_client.create_bucket(Bucket=TEST_BUCKET_NAME)
